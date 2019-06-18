@@ -29,24 +29,26 @@ function start(){
 
    
     if(running){      
-        startButton.className = "btn btn-outline-secondary";
+        startButton.className = "btn btn-outline-success";
                 startButton.innerHTML = "Start";
         running = false;
+        clearKeys();
         clearInterval(game);
-        console.log(running);
+        //console.log(running);
     }else{
         running = true;
         var game = setInterval(() =>{
-            if(remainingLives > 0 && running){
+            if(remainingLives > 0 || running){
                 getRandomKey();
-                console.log(running);
+               // console.log(running);
             }else{
               
-                startButton.className = "btn btn-outline-secondary";
+                startButton.className = "btn btn-outline-success";
                 startButton.innerHTML = "Start";
                 running = false;
+                clearKeys();
                 clearInterval(game);
-                console.log(running);
+              //  console.log(running);
             }         
         },interval);
     }
