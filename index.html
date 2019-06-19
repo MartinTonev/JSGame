@@ -33,11 +33,18 @@
         </div>
         <div class="row justify-content-center">     
           <div class="col-auto">
-              <input type="range" onchange="getDifficulty()" class="custom-range" min="10" max="1500" id="seconds">
-              <span id="message">Game speed: 0.755 second per key</span>
+              <input type="range" onchange="getDifficulty()" class="custom-range" min="250" max="1500" value="1000" id="seconds" width="80%">
+              <span id="message">Game speed: 1 keys per second</span>
           </div>   
          
         </div>
+        <div class="row justify-content-center">     
+            <div class="col-auto">
+                
+                <span id="score">Final score:</span>
+            </div>   
+           
+          </div>
       </section>
     </div>
 
