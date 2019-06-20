@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="CSS">
     <script>
 
 </script>
@@ -15,7 +15,7 @@
     <title>Hello, world!</title>
     
   </head>
-  <body onkeypress="keyStuff(event)">
+  <body background="https://source.unsplash.com/twukN12EN7c/1920x1080" style="height: 100%; overflow: hidden" onkeypress="keyStuff(event)">
 
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -23,9 +23,14 @@
       <section class="content">
 
         <div class="row justify-content-center">
-          <H1 id='lives'>Lives Left <span id='livesAmount'>0</span></H1>
 
-
+          <div class="col text-center">
+            <img style="width: 50%;" src="images/over.png" id='game over'/>
+            <img style="width: 10%;" src="images/ful.png" id='life1'/>
+            <img style="width: 10%;" src="images/ful.png" id='life2'/>
+            <img style="width: 10%;" src="images/ful.png" id='life3'/>
+          </div>
+          
         </div>
 
         <div class="row justify-content-center">
@@ -34,14 +39,14 @@
         <div class="row justify-content-center">     
           <div class="col-auto">
               <input type="range" onchange="getDifficulty()" class="custom-range" min="250" max="1500" value="1000" id="seconds" width="80%">
-              <span id="message">Game speed: 1 keys per second</span>
+              <span id="message">Game speed: Keys per 1 seconds</span>
           </div>   
          
         </div>
         <div class="row justify-content-center">     
             <div class="col-auto">
                 
-                <span id="score">Final score:</span>
+                <span id="score">Score: 0</span>
             </div>   
            
           </div>

@@ -11,30 +11,37 @@ var game;
 
 var score = 0;
 
+
+document.getElementById('game over').hidden = true;
 function start(){ 
     var interval = document.getElementById('seconds').value;
 
     if(running){
+        resetGame();
         runGameLoop(interval,false);
     }else{
+        resetGame();
         runGameLoop(interval,true);
     }
+
 }
+
 function runGameLoop(interval,run){
     if(run){
+        document.getElementById('game over').hidden = true;
         var startButton = document.getElementById('start');
         startButton.className = "btn btn-outline-danger";
         startButton.innerHTML = "Stop";
         running = true;
+        score = 0;
+
         game = setInterval(() =>{   
-            //console.log(active);
+           
             if(checkActive() && checkAlive()){
                 getRandomKey();
             }else if(checkAlive()){
                 removeLife();
             }else{
-
-                resetGame();
                 clearInterval(game);
             }
             
@@ -45,7 +52,7 @@ function runGameLoop(interval,run){
         running = false;
    
         clearInterval(game);
-        resetGame();
+       
     }
 }
 function GameOver(){
@@ -53,36 +60,36 @@ function GameOver(){
 }
 function displayScore(){   
     var scoreHtml = document.getElementById('score');
-    scoreHtml.innerHTML = 'Final score: ' + score;
+    scoreHtml.innerHTML = 'Score: ' + score;
 }
 function removeLife(){
-    var text = document.getElementById('lives');
-    this.backgroundColor = "#FF0000";
-    
-    text.style.borderColor = "#FF0000";
-    text.style.boxShadow = "0 0 10px #FF0000";
-    setTimeout(function(){
-        this.backgroundColor = "#FFFFFF";
-        text.style.borderColor = "#707070";
-        text.style.boxShadow = "0 0 0px #FF0000";
-    },1000);
 
+    document.getElementById('life'+remainingLives).hidden = true;
     remainingLives--;
+    if(remainingLives == 0){    
+        var startButton = document.getElementById('start');
+        startButton.className = "btn btn-outline-warning";
+        startButton.innerHTML = "Reset";
+        document.getElementById('game over').hidden = false;
+    }
+  //  var lives = document.getElementById('livesAmount');
+   // lives.innerHTML = remainingLives;
 
-    var lives = document.getElementById('livesAmount');
-    lives.innerHTML = remainingLives;
-
-    active = [];
+    active.length = 0;
   
     clearKeys();
 }
-
 function resetGame(){
+    document.getElementById('game over').hidden = true;
+    document.getElementById('life1').hidden = false;
+    document.getElementById('life2').hidden = false;
+    document.getElementById('life3').hidden = false;
+
     var startButton = document.getElementById('start');
     startButton.className = "btn btn-outline-success";
     startButton.innerHTML = "Start";
     running = false;
-    active = [];
+    active.length = 0;
     remainingLives = 3;
     clearKeys();
     GameOver();
@@ -100,13 +107,14 @@ function checkActive(){
     if(active.length < 3){
         return true;
     }else{
+        
         return false;
     }
 }
 
 function getDifficulty(){
     var message = document.getElementById('message');
-    message.innerHTML = "Game speed: " + document.getElementById('seconds').value/1000 + " keys per second";
+    message.innerHTML = "Game speed: Keys per " + document.getElementById('seconds').value/1000 + " seconds";
 }
 
 function keyStuff(event) {
@@ -120,39 +128,45 @@ function keyStuff(event) {
 }
 
 function confirmKeyMatch(y){ 
-    
-    if(active.includes(y.toUpperCase())){
-        console.log('it does');
 
-        for( var i = 0; i < active.length; i++){ 
-            if ( active[i] === y.toUpperCase()) {
-                console.log(y.toUpperCase()); 
-                active.splice(i,1);
-                var button = document.getElementById(y.toUpperCase());
-                button.style.backgroundColor = 'transparent';
-                button.style.borderColor = "#707070";
-                button.style.boxShadow = "0 0 0px #FF0000";
-                       
-                score++;
-            }
-         }
-  
+    if(active.includes(y.toUpperCase())){
+
+
+         for( var i = active.length-1; i--;){
+            if ( active[i] === y.toUpperCase()){
+                active.splice(i, 1);
+                
+            } 
+        }
+
+         active.length - 1;
+         var button = document.getElementById(y.toUpperCase());
+
+         button.style.backgroundColor = '#32CD32';
+         button.style.borderColor = "#32CD32";
+         button.style.boxShadow = "0 0 10px #32CD32";
+         setTimeout(function(){
+            button.style.backgroundColor = 'transparent';
+            button.style.borderColor = "#707070";
+            button.style.boxShadow = "0 0 0px #FF0000";
+        },1000);
+                
+         score++;
+         displayScore();
     }else if(checkAlive()){
         removeLife();
     }else{
-        resetGame();
+        //resetGame();
     }
 
-    //active--;
-   
 }
 
 function getRandomKey(){
     var currentKey = keys[Math.floor(Math.random()*keys.length)];
-    active += currentKey;
+    active.push(currentKey);
     LightUpKey(currentKey);
     
-    //console.log(active);
+
 }
 
 function LightUpKey(currentKey){
