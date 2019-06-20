@@ -5,7 +5,7 @@ var keys = ['1', '2', '3','4', '5', '6', '7', '8', '9', '0', '-', '=',
 
 var running = false;
 
-var active = [];
+var active = [3];
 var remainingLives = 3;
 var game;
 
@@ -32,7 +32,7 @@ function runGameLoop(interval,run){
             }else if(checkAlive()){
                 removeLife();
             }else{
-                GameOver();
+
                 resetGame();
                 clearInterval(game);
             }
@@ -42,7 +42,7 @@ function runGameLoop(interval,run){
     }else{
        
         running = false;
-        GameOver();
+   
         clearInterval(game);
         resetGame();
     }
@@ -52,7 +52,7 @@ function GameOver(){
 }
 function displayScore(){   
     var scoreHtml = document.getElementById('score');
-    scoreHtml.innerHTML = score;
+    scoreHtml.innerHTML = 'Final score: ' + score;
 }
 function removeLife(){
     var text = document.getElementById('lives');
@@ -71,7 +71,7 @@ function removeLife(){
     var lives = document.getElementById('livesAmount');
     lives.innerHTML = remainingLives;
 
-    active = 0;
+    active = [];
   
     clearKeys();
 }
@@ -84,6 +84,7 @@ function resetGame(){
     active = 0;
     remainingLives = 3;
     clearKeys();
+    GameOver();
 }
 
 function checkAlive(){
@@ -95,7 +96,7 @@ function checkAlive(){
 }
 
 function checkActive(){
-    if(active < 3){
+    if(active.length < 3){
         return true;
     }else{
         return false;
@@ -118,17 +119,28 @@ function keyStuff(event) {
 }
 
 function confirmKeyMatch(y){ 
-    var button = document.getElementById(y.toUpperCase());
-    button.style.backgroundColor = 'transparent';
-    button.style.borderColor = "#707070";
-    button.style.boxShadow = "0 0 0px #FF0000";
-    active--;
+    if(active.includes(y.toUpperCase())){
+        var button = document.getElementById(y.toUpperCase());
+        button.style.backgroundColor = 'transparent';
+        button.style.borderColor = "#707070";
+        button.style.boxShadow = "0 0 0px #FF0000";
+        score++;
+    }else if(checkAlive()){
+        removeLife();
+    }else{
+        resetGame();
+    }
+
+    //active--;
+   
 }
 
 function getRandomKey(){
     var currentKey = keys[Math.floor(Math.random()*keys.length)];
+    active += currentKey;
     LightUpKey(currentKey);
-    active++;
+    
+    console.log(active);
 }
 
 function LightUpKey(currentKey){
