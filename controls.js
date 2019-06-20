@@ -5,7 +5,7 @@ var keys = ['1', '2', '3','4', '5', '6', '7', '8', '9', '0', '-', '=',
 
 var running = false;
 
-var active = [3];
+var active = [];
 var remainingLives = 3;
 var game;
 
@@ -27,6 +27,7 @@ function runGameLoop(interval,run){
         startButton.innerHTML = "Stop";
         running = true;
         game = setInterval(() =>{   
+            //console.log(active);
             if(checkActive() && checkAlive()){
                 getRandomKey();
             }else if(checkAlive()){
@@ -81,7 +82,7 @@ function resetGame(){
     startButton.className = "btn btn-outline-success";
     startButton.innerHTML = "Start";
     running = false;
-    active = 0;
+    active = [];
     remainingLives = 3;
     clearKeys();
     GameOver();
@@ -119,12 +120,23 @@ function keyStuff(event) {
 }
 
 function confirmKeyMatch(y){ 
+    
     if(active.includes(y.toUpperCase())){
-        var button = document.getElementById(y.toUpperCase());
-        button.style.backgroundColor = 'transparent';
-        button.style.borderColor = "#707070";
-        button.style.boxShadow = "0 0 0px #FF0000";
-        score++;
+        console.log('it does');
+
+        for( var i = 0; i < active.length; i++){ 
+            if ( active[i] === y.toUpperCase()) {
+                console.log(y.toUpperCase()); 
+                active.splice(i,1);
+                var button = document.getElementById(y.toUpperCase());
+                button.style.backgroundColor = 'transparent';
+                button.style.borderColor = "#707070";
+                button.style.boxShadow = "0 0 0px #FF0000";
+                       
+                score++;
+            }
+         }
+  
     }else if(checkAlive()){
         removeLife();
     }else{
@@ -140,7 +152,7 @@ function getRandomKey(){
     active += currentKey;
     LightUpKey(currentKey);
     
-    console.log(active);
+    //console.log(active);
 }
 
 function LightUpKey(currentKey){
