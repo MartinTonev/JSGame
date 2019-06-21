@@ -35,13 +35,13 @@
         
         <div class="row justify-content-center">
             <!-- Button to show game rules-->
-            <H1><a class="btn btn-outline-info" style="margin: 3pt;" onclick="showRules()" id='easy'>Game rules</a></H1>
+            <H1><a class="btn btn-outline-info text-white" style="margin: 3pt;" onclick="showRules()" id='easy'>Game rules</a></H1>
         </div>
         <div class="row justify-content-center">
            <!-- Buttons to select game mode-->
-            <H1><a class="btn btn-outline-success" style="margin: 3pt;" onclick="defaultMode()" id='easy'>Easy</a></H1>
-            <H1><a class="btn btn-outline-primary" style="margin: 3pt;" onclick="randomMode()" onmouseover="randomColors()" id='random'>Random</a></H1>
-            <H1><a class="btn btn-outline-dark" style="margin: 3pt;" onclick="blindMode()" id='blind'>Blind</a></H1>
+            <H1><a class="btn btn-outline-success text-white" style="margin: 3pt;" onclick="defaultMode()" id='easy'>Easy</a></H1>
+            <H1><a class="btn btn-outline-primary text-white" style="margin: 3pt;" onclick="randomMode()" onmouseover="randomColors()" id='random'>Random</a></H1>
+            <H1><a class="btn btn-outline-dark text-white"  style="margin: 3pt;" onclick="blindMode()" id='blind'>Blind</a></H1>
         </div>
         <div class="row justify-content-center">     
                 <div class="col-auto">
@@ -96,7 +96,7 @@
           var colors = ['primary','secondary','success','danger','warning','info','light','dark'];
           var i = Math.floor(Math.random() * colors.length);
           var r = document.getElementById('random');
-          r.className = "btn btn-outline-"+ colors[i];
+          r.className = "btn text-white btn-outline-"+ colors[i];
           
       }
     </script>
