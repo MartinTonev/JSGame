@@ -22,7 +22,7 @@ function defaultMode(){
                 key.style.borderColor = "#000000";
                 key.style.boxShadow = "0 0 10px #000000";
             });
-
+            
             keysHtml.style = 'width: 15px; margin: 10px';
             keysHtml.appendChild(key);
             rowHtml.appendChild(keysHtml);
