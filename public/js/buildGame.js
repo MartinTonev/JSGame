@@ -1,3 +1,4 @@
+//All variables needed are initialised here
 var numberRowkeys = ['1', '2', '3','4', '5', '6', '7', '8', '9', '0', '-', '='];
 var topRowkeys = ['Q', 'W','E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', '\\'];
 var midRowkeys = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', '\''];
@@ -9,7 +10,7 @@ var remainingLives = 3;
 var game;
 var score = 0;
 
-
+//runs the game, if the game is already running stops it 
 function runGameLoop(interval,run){
     if(run){
         startButtonState('stop');

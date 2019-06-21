@@ -1,3 +1,4 @@
+//Sets up the default keyboard layout
 function defaultMode(){
     startButtonState('start');  
     document.getElementById("keyRows").innerHTML = "";
@@ -25,13 +26,4 @@ function defaultMode(){
         });
         document.getElementById("keyRows").appendChild(rowHtml);
     });
-}
-function resetGameVisual(){
-    document.getElementById('game over').hidden = true;
-    document.getElementById('life1').hidden = false;
-    document.getElementById('life2').hidden = false;
-    document.getElementById('life3').hidden = false;
-    startButtonState('start');
-    clearKeys();
-    displayScore();
 }

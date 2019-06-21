@@ -1,3 +1,4 @@
+//Sets up the random keyboard layout
 function randomMode(){   
     startButtonState('start');  
     document.getElementById("keyRows").innerHTML = "";

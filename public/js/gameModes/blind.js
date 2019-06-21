@@ -1,3 +1,4 @@
+//Sets up the blind keyboard layout
 function blindMode(){
     startButtonState('start');   
     document.getElementById("keyRows").innerHTML = "";
