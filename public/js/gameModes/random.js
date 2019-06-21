@@ -2,27 +2,27 @@
 function randomMode(){   
     startButtonState('start');  
     document.getElementById("keyRows").innerHTML = "";
-
+    var keys = getKeys();
     keys.forEach(row => {
         var rowHtml = document.createElement('div');
         rowHtml.className = 'row justify-content-center';
-        var newrow = shuffle(row);
-        newrow.forEach(keys => {
+        shuffle(row);
+        row.forEach(key => {
             var keysHtml = document.createElement('div');
             keysHtml.className = 'col-auto';
-            var key = document.createElement('a');
-            key.id = keys;
-            key.className = 'btn btn-outline-secondary';
-            key.innerHTML = keys;
-            key.style.width = "26pt";
-            key.style.backgroundColor = "#FFFFA2";
-            key.addEventListener('keyup',function(){
-                key.style.borderColor = "#000000";
-                key.style.boxShadow = "0 0 10px #000000";
+            var button = document.createElement('a');
+            button.id = key;
+            button.className = 'btn btn-outline-secondary';
+            button.innerHTML = key;
+            button.style.width = "26pt";
+            button.style.backgroundColor = "#FFFFA2";
+            button.addEventListener('keyup',function(){
+                button.style.borderColor = "#000000";
+                button.style.boxShadow = "0 0 10px #000000";
             });
     
             keysHtml.style = 'width: 15px; margin: 10px';
-            keysHtml.appendChild(key);
+            keysHtml.appendChild(button);
             rowHtml.appendChild(keysHtml);
         });
         document.getElementById("keyRows").appendChild(rowHtml);

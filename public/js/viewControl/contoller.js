@@ -43,6 +43,7 @@ function LightUpKeySuccess(y){
 }
 //Resets the look of all keys
 function clearKeys(){
+    var keys = getKeys();
     keys.forEach(row => {
         row.forEach(element => {
             var button = document.getElementById(element);
