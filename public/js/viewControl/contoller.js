@@ -6,15 +6,22 @@ function displayScore(){
 }
 //Removes one heart image based on remaining lives
 function removeHeart(){   
-    document.getElementById('life' + remainingLives).hidden = true;
-    
+    //document.getElementById('life' + remainingLives).hidden = true;
+    document.getElementById('life' + remainingLives).setAttribute('src','images/empty.png');   
 }
 //If the player loses all lives displays game over image
 function showGameOver(){
     if(remainingLives == 0){    
         startButtonState('reset');
         document.getElementById('game over').hidden = false;
+        hideLifeHearts(true);
     }
+}
+//Toggle life heart images 
+function hideLifeHearts(y){
+    document.getElementById('life1').hidden = y;
+    document.getElementById('life2').hidden = y;
+    document.getElementById('life3').hidden = y;
 }
 //When sliding the seconds slider updates the seconds value
 function getDifficulty(){
@@ -124,9 +131,12 @@ function showRules(){
 //resets hearts, game over image and keys 
 function resetGameVisual(){
     document.getElementById('game over').hidden = true;
-    document.getElementById('life1').hidden = false;
-    document.getElementById('life2').hidden = false;
-    document.getElementById('life3').hidden = false;
+    hideLifeHearts(false);
+    
+    document.getElementById('life1').setAttribute('src','images/ful.png');
+    document.getElementById('life2').setAttribute('src','images/ful.png');
+    document.getElementById('life3').setAttribute('src','images/ful.png');
+
     startButtonState('start');
     clearKeys();
     displayScore();
