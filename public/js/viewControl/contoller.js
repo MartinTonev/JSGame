@@ -41,13 +41,16 @@ function LightUpKeySuccess(y){
 }
 
 function clearKeys(){
-    qwerty.forEach(key => {
-        var button = document.getElementById(key);
-        button.style.height = "28.5pt";
-        button.style.width = "26pt";
-        button.style.backgroundColor = "#FFFFA2";
-        button.style.borderColor = "#707070";
-        button.style.boxShadow = "0 0 0px #FF0000";
+    keys.forEach(row => {
+        row.forEach(element => {
+            var button = document.getElementById(element);
+            button.style.height = "28.5pt";
+            button.style.width = "26pt";
+            button.style.backgroundColor = "#FFFFA2";
+            button.style.borderColor = "#707070";
+            button.style.boxShadow = "0 0 0px #FF0000";
+        });
+       
     });
 }
 
